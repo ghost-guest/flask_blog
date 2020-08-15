@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% from 'bootstrap/wtf.html' import quick_form %} {%
+block title %}Weblog{% endblock %} {% block page_content %}
+<div class="page-header">
+  <h1>
+    Hello {% if current_user.name %}{{ current_user.name }}{% else %}Stranger{%
+    endif %}
+  </h1>
+</div>
+<!-- 渲染编辑博客的表单 START -->
+<div>
+  {{ quick_form(form) }}
+</div>
+<br /><br />
+<!-- 渲染编辑博客的表单 END -->
+<!-- 显示本页博客列表 -->
+{% include '_blogs.html' %} {% endblock %} {% block scripts %} {{super()}}
+<!-- Markdown 预览是由 Flask-PageDown 模块支持的，加入此模板宏即可实现 -->
+{{pagedown.include_pagedown()}} {% endblock %}
